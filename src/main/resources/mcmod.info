@@ -1,0 +1,31 @@
+[
+{
+  "modid": "sextiarysector4lib",
+  "name": "SextiarySector4 Lib",
+  "description": "Library mod used by sextiarysector4.",
+  "version": "$version",
+  "mcversion": "${mcversion}",
+  "url": "",
+  "updateUrl": "",
+  "authorList": ["シフト (Shift)"],
+  "credits": "シフト (Shift)",
+  "logoFile": "",
+  "screenshots": [],
+  "dependencies": [],
+  "parent":"sextiarysector4"
+},
+{
+  "modid": "sextiarysector4",
+  "name": "SextiarySector4 Core",
+  "description": "Add the concept of the SextiarySector to Minecraft.",
+  "version": "$version",
+  "mcversion": "${mcversion}",
+  "url": "",
+  "updateUrl": "",
+  "authorList": ["シフト (Shift)"],
+  "credits": "シフト (Shift)",
+  "logoFile": "",
+  "screenshots": [],
+  "dependencies": []
+}
+]

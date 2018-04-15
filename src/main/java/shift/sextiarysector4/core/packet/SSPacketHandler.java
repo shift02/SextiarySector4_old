@@ -18,6 +18,8 @@ public class SSPacketHandler {
          */
         INSTANCE.registerMessage(MessagePlayerDataHandler.class, PacketPlayerData.class, 0, Side.CLIENT);
         
+        INSTANCE.registerMessage(MessageGuiId.class, PacketGuiId.class, 1, Side.SERVER);
+        
     }
     
 }

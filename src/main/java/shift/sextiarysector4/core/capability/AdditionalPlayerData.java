@@ -23,12 +23,16 @@ public class AdditionalPlayerData implements IStorage<AdditionalPlayerData>, ICa
     /** スタミナ */
     private StaminaStats stamina;
     
+    /** 装備 */
+    private EquipmentStats equipment;
+    
     /** 座る */
     private SitStats sit;
     
     public AdditionalPlayerData() {
         this.moisture = new MoistureStats();
         this.stamina = new StaminaStats();
+        this.equipment = new EquipmentStats();
         this.sit = new SitStats();
     }
     
@@ -36,10 +40,14 @@ public class AdditionalPlayerData implements IStorage<AdditionalPlayerData>, ICa
         
         if (moisture.isPacket() || stamina.isPacket()) {
             SSPacketHandler.INSTANCE.sendTo(new PacketPlayerData(this), (EntityPlayerMP) entityPlayer);
+        } else if (this.equipment.isPacket()) {
+            SSPacketHandler.INSTANCE.sendTo(new PacketPlayerData(this), (EntityPlayerMP) entityPlayer);
         }
         
         this.moisture.onUpdate(entityPlayer);
         this.stamina.onUpdate(entityPlayer);
+        
+        this.equipment.onUpdate(entityPlayer);
         
         this.sit.onUpdate(this, entityPlayer);
         
@@ -53,6 +61,8 @@ public class AdditionalPlayerData implements IStorage<AdditionalPlayerData>, ICa
         
         this.stamina.writeNBT(nbt);
         
+        this.equipment.writeNBT(nbt);
+        
         this.sit.writeNBT(nbt);
         
         return nbt;
@@ -63,6 +73,8 @@ public class AdditionalPlayerData implements IStorage<AdditionalPlayerData>, ICa
         this.moisture.readNBT(nbt);
         
         this.stamina.readNBT(nbt);
+        
+        this.equipment.readNBT(nbt);
         
         this.sit.readNBT(nbt);
         
@@ -82,6 +94,14 @@ public class AdditionalPlayerData implements IStorage<AdditionalPlayerData>, ICa
     
     private void setStamina(StaminaStats stamina) {
         this.stamina = stamina;
+    }
+    
+    public EquipmentStats getEquipment() {
+        return equipment;
+    }
+    
+    public void setEquipment(EquipmentStats equipment) {
+        this.equipment = equipment;
     }
     
     public SitStats getSit() {

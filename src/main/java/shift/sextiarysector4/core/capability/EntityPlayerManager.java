@@ -31,21 +31,6 @@ public class EntityPlayerManager implements IPlayerManager {
     private final static int MAX_STAMINA_LEVEL = 100;
     private final static int MAX_PREV_STAMINA_LEVEL = 20;
     
-    /*
-     * public static final Map<String, MoistureStats> moistureMap = new
-     * HashMap<String, MoistureStats>(); public static final Map<String,
-     * StaminaStats> staminaMap = new HashMap<String, StaminaStats>();
-     *
-     * public static final Map<String, Integer> lastMoistureLevel = new
-     * HashMap<String, Integer>(); public static final Map<String, Boolean>
-     * wasThirsty = new HashMap<String, Boolean>();
-     *
-     * public static final Map<String, Integer> lastStaminaLevel = new
-     * HashMap<String, Integer>(); public static final Map<String, Boolean>
-     * wasTired = new HashMap<String, Boolean>();
-     *
-     */
-    
     public static EntityPlayerManager instance = new EntityPlayerManager();
     
     private EntityPlayerManager() {
@@ -140,6 +125,12 @@ public class EntityPlayerManager implements IPlayerManager {
         
     }
     
+    public static EquipmentStats getEquipmentStats(EntityPlayer entityPlayer) {
+        
+        return getAdditionalPlayerData(entityPlayer).getEquipment();
+        
+    }
+    
     // GUI用
     public static int getPrevMoistureLevel(EntityPlayer entityPlayer) {
         
@@ -163,7 +154,7 @@ public class EntityPlayerManager implements IPlayerManager {
                     new PacketPlayerData(this.getAdditionalPlayerData((EntityPlayer) event.getEntity())),
                     (EntityPlayerMP) event.getEntity());
             
-            // this.sendOtherPlayer((EntityPlayer) event.getEntity());
+            this.sendOtherPlayer((EntityPlayer) event.getEntity());
             
         }
     }
@@ -176,7 +167,7 @@ public class EntityPlayerManager implements IPlayerManager {
             SSPacketHandler.INSTANCE.sendTo(new PacketPlayerData(this.getAdditionalPlayerData(event.player)),
                     (EntityPlayerMP) event.player);
             
-            //this.sendOtherPlayer(event.player);
+            this.sendOtherPlayer(event.player);
         }
         
     }
@@ -190,7 +181,7 @@ public class EntityPlayerManager implements IPlayerManager {
             SSPacketHandler.INSTANCE.sendTo(new PacketPlayerData(this.getAdditionalPlayerData(event.player)),
                     (EntityPlayerMP) event.player);
             
-            //this.sendOtherPlayer(event.player);
+            this.sendOtherPlayer(event.player);
         }
         
     }

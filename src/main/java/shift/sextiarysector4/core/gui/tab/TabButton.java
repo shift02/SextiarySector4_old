@@ -15,6 +15,7 @@ import net.minecraft.client.renderer.RenderHelper;
 import net.minecraft.client.renderer.RenderItem;
 import net.minecraft.client.resources.I18n;
 import net.minecraft.util.ResourceLocation;
+import net.minecraftforge.client.event.GuiContainerEvent.DrawForeground;
 
 public class TabButton extends GuiButton {
     
@@ -22,11 +23,12 @@ public class TabButton extends GuiButton {
     private AbstractTab tab;
     private RenderItem itemRenderer = Minecraft.getMinecraft().getRenderItem();
     //new RenderItem(
-    //Minecraft.getMinecraft().renderEngine, null, Minecraft.getMinecraft().getItemColors());
+    //        Minecraft.getMinecraft().renderEngine, new ModelManager(Minecraft.getMinecraft().getTextureMapBlocks()), Minecraft.getMinecraft().getItemColors());
     
     public TabButton(AbstractTab tab) {
         super(0, 0, 0, 28, 32, "");
         this.tab = tab;
+        //MinecraftForge.EVENT_BUS.register(this);
     }
     
     @Override
@@ -50,8 +52,9 @@ public class TabButton extends GuiButton {
             this.zLevel = 0.0F;
             
             RenderHelper.enableGUIStandardItemLighting();
-            this.zLevel = 200.0F;
-            this.itemRenderer.zLevel = 200.0F;
+            
+            this.zLevel = 120.0F;
+            this.itemRenderer.zLevel = 120.0F;
             GL11.glEnable(GL11.GL_LIGHTING);
             GL11.glEnable(GL12.GL_RESCALE_NORMAL);
             this.itemRenderer.renderItemAndEffectIntoGUI(tab.getItemStack(), x + 6, y + 8);
@@ -66,25 +69,51 @@ public class TabButton extends GuiButton {
             this.hovered = mouseX >= this.x && mouseY >= this.y && mouseX < this.x + this.width && mouseY < this.y + this.height;
             //int k = this.getHoverState(this.hovered);
             
-            if (this.hovered) {
+            /*if (this.hovered) {
                 //this.drawCenteredString(mc.fontRenderer, I18n.format(this.tab.getTabName()), mouseX, mouseY, 0xffffff);
                 List name = new ArrayList<String>();
                 name.add(I18n.format(this.tab.getTabName()));
                 this.drawHoveringText(name, mouseX, mouseY, mc.fontRenderer, mc.currentScreen);
                 //((GuiContainer)mc.currentScreen).drawHoveringText(name, mouseX + 20, mouseY + 5, mc.fontRenderer);
-            }
+            }*/
+            
+            drawButtonForegroundLayer(mouseX, mouseY);
             
             GL11.glDisable(GL11.GL_DEPTH_TEST);
             
         }
     }
     
+    //@SubscribeEvent(priority = EventPriority.HIGHEST)
+    public void drawForeground(DrawForeground e) {
+        this.drawButtonForegroundLayer(e.getMouseX(), e.getMouseY());
+    }
+    
+    @Override
+    public void drawButtonForegroundLayer(int mouseX, int mouseY) {
+        
+        this.hovered = mouseX >= this.x && mouseY >= this.y && mouseX < this.x + this.width && mouseY < this.y + this.height;
+        
+        if (this.hovered) {
+            //this.drawCenteredString(mc.fontRenderer, I18n.format(this.tab.getTabName()), mouseX, mouseY, 0xffffff);
+            List name = new ArrayList<String>();
+            name.add(I18n.format(this.tab.getTabName()));
+            this.drawHoveringText(name, mouseX, mouseY, Minecraft.getMinecraft().fontRenderer, Minecraft.getMinecraft().currentScreen);
+            
+            //((GuiContainer)mc.currentScreen).drawHoveringText(name, mouseX + 20, mouseY + 5, mc.fontRenderer);
+        }
+        
+    }
+    
     protected void drawHoveringText(List p_146283_1_, int p_146283_2_, int p_146283_3_, FontRenderer font, GuiScreen gui) {
         if (!p_146283_1_.isEmpty()) {
+            
             GL11.glDisable(GL12.GL_RESCALE_NORMAL);
+            
             //RenderHelper.disableStandardItemLighting();
             //GL11.glDisable(GL11.GL_LIGHTING);
             //GL11.glDisable(GL11.GL_DEPTH_TEST);
+            
             int k = 0;
             Iterator iterator = p_146283_1_.iterator();
             
@@ -143,11 +172,19 @@ public class TabButton extends GuiButton {
             
             this.zLevel = 0.0F;
             itemRenderer.zLevel = 0.0F;
+            
             //GL11.glEnable(GL11.GL_LIGHTING);
             //GL11.glEnable(GL11.GL_DEPTH_TEST);
             //RenderHelper.enableStandardItemLighting();
+            
             GL11.glEnable(GL12.GL_RESCALE_NORMAL);
+            
         }
+    }
+    
+    protected void drawHoveringTextOld(List<String> textLines, int x, int y, FontRenderer font, GuiScreen gui) {
+        net.minecraftforge.fml.client.config.GuiUtils.drawHoveringText(textLines, x, y, gui.width, gui.height, -1, font);
+        
     }
     
     @Override

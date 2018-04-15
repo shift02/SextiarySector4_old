@@ -4,6 +4,8 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.fml.client.FMLClientHandler;
+import shift.sextiarysector4.core.packet.PacketGuiId;
+import shift.sextiarysector4.core.packet.SSPacketHandler;
 
 public class InventoryTabSS extends AbstractTab {
     
@@ -11,7 +13,8 @@ public class InventoryTabSS extends AbstractTab {
     
     @Override
     public void onTabClicked() {
-        //SSPacketHandler.INSTANCE.sendToServer(new PacketGuiId(200));
+        
+        SSPacketHandler.INSTANCE.sendToServer(new PacketGuiId(200));
         
         //mc.thePlayer.openGui(SextiarySector.instance, 200, mc.thePlayer.worldObj, (int)mc.thePlayer.posX, (int)mc.thePlayer.posY, (int)mc.thePlayer.posZ);
     }

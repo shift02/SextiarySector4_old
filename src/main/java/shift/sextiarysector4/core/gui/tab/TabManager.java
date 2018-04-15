@@ -98,7 +98,7 @@ public class TabManager {
             int guiLeft = (event.getGui().width - xSize) / 2;
             int guiTop = (event.getGui().height - ySize) / 2;
             
-            if (this.hasPotion()) {
+            if (this.hasPotion((GuiInventory) event.getGui())) {
                 guiLeft = 160 + (event.getGui().width - xSize - 200) / 2;
             }
             
@@ -107,7 +107,8 @@ public class TabManager {
         }
     }
     
-    public static boolean hasPotion() {
+    public static boolean hasPotion(GuiInventory gui) {
+        //if (gui.func_194310_f().isVisible()) return true;
         if (mc.player.getActivePotionEffects().isEmpty()) return false;
         
         return isNotNEI();

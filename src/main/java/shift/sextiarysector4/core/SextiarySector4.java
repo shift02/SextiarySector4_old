@@ -12,6 +12,7 @@ import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.Mod.EventHandler;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
+import net.minecraftforge.fml.common.network.NetworkRegistry;
 import net.minecraftforge.fml.common.registry.ForgeRegistries;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 import shift.sextiarysector4.api.SextiarySector4API;
@@ -74,6 +75,9 @@ public class SextiarySector4 {
         TabManager.initTabManager();
         
         SSCorePlayerTabs.initTabs();
+        
+        SSCoreProxy.getProxy().fmlPreInit();
+        NetworkRegistry.INSTANCE.registerGuiHandler(this, SSCoreProxy.getProxy());
         
     }
     

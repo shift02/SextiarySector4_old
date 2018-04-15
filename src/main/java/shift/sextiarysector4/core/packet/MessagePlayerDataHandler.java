@@ -33,12 +33,12 @@ public class MessagePlayerDataHandler implements IMessageHandler<PacketPlayerDat
         
         NBTTagCompound nbt = message.getData();
         
-        if (nbt.hasKey("uuid")) {
+        if (nbt.hasKey("uuid") && SSCoreProxy.getProxy().getClientPlayer() != null) {
             
             UUID uuid = UUID.fromString(nbt.getString("uuid"));
             
             //自分自身は更新しない
-            if (uuid.equals(SSCoreProxy.getProxy().getClientPlayer().getUniqueID())) return null;
+            if (SSCoreProxy.getProxy().getClientPlayer() != null && uuid.equals(SSCoreProxy.getProxy().getClientPlayer().getUniqueID())) return null;
             
             List<EntityPlayer> player = SSCoreProxy.getProxy().getClientPlayer().world.playerEntities;
             

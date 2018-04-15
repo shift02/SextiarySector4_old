@@ -1,8 +1,14 @@
 package shift.sextiarysector4.core.gui.tab;
 
+import net.minecraft.client.Minecraft;
+import net.minecraft.item.ItemStack;
+import net.minecraftforge.fml.client.FMLClientHandler;
+import shift.sextiarysector4.api.equipment.EquipmentType;
+import shift.sextiarysector4.core.capability.EntityPlayerManager;
+import shift.sextiarysector4.lib.item.ISSEquipment;
+
 public abstract class InventoryTabEquipment extends AbstractTab {
     
-    /*
     private static Minecraft mc = FMLClientHandler.instance().getClient();
     
     private EquipmentType type;
@@ -17,7 +23,7 @@ public abstract class InventoryTabEquipment extends AbstractTab {
         
         for (int i : type.getSlots()) {
             
-            ItemStack slot = EntityPlayerManager.getEquipmentStats(mc.thePlayer).inventory.getStackInSlot(i);
+            ItemStack slot = EntityPlayerManager.getEquipmentStats(mc.player).inventory.getStackInSlot(i);
             
             if (slot != null && slot.isItemEqual(item)) {
                 return slot;
@@ -35,7 +41,7 @@ public abstract class InventoryTabEquipment extends AbstractTab {
             return;
         }
         
-        ((ISSEquipment) this.getItemStack().getItem()).onTabClicked(type, getSlotItem(), mc.thePlayer);
+        ((ISSEquipment) this.getItemStack().getItem()).onTabClicked(type, getSlotItem(), mc.player);
         
     }
     
@@ -51,7 +57,7 @@ public abstract class InventoryTabEquipment extends AbstractTab {
             return false;
         }
         
-        return ((ISSEquipment) this.getItemStack().getItem()).shouldAddToList(type, getSlotItem(), mc.thePlayer);
+        return ((ISSEquipment) this.getItemStack().getItem()).shouldAddToList(type, getSlotItem(), mc.player);
     }
     
     @Override
@@ -61,7 +67,7 @@ public abstract class InventoryTabEquipment extends AbstractTab {
             return "player.tab." + "";
         }
         
-        return "player.tab." + ((ISSEquipment) this.getItemStack().getItem()).getTabName(type, getSlotItem(), mc.thePlayer);
-    }*/
+        return "player.tab." + ((ISSEquipment) this.getItemStack().getItem()).getTabName(type, getSlotItem(), mc.player);
+    }
     
 }

@@ -20,6 +20,7 @@ import shift.sextiarysector4.api.capability.CapabilityStaminaHandler;
 import shift.sextiarysector4.api.capability.ItemDrink;
 import shift.sextiarysector4.core.capability.AdditionalPlayerData;
 import shift.sextiarysector4.core.capability.EntityPlayerManager;
+import shift.sextiarysector4.core.gui.tab.TabManager;
 import shift.sextiarysector4.core.packet.SSPacketHandler;
 import shift.sextiarysector4.lib.SSLib;
 
@@ -69,6 +70,10 @@ public class SextiarySector4 {
         }
         
         GameRegistry.addSmelting(new ItemStack(Items.POTIONITEM), new ItemStack(drinkingWaterBottle), 0.1f);
+        
+        TabManager.initTabManager();
+        
+        SSCorePlayerTabs.initTabs();
         
     }
     

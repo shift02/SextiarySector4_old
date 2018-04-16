@@ -24,7 +24,7 @@ public enum EquipmentType {
     }
     
     public void registerIcon(TextureMap map) {
-        this.setIcon(map.registerSprite(new ResourceLocation(SextiarySector4.MODID, "gui/slot_" + this.iconName)));
+        this.setIcon(map.registerSprite(new ResourceLocation(SextiarySector4.MODID, "guis/slot/slot_" + this.iconName)));
     }
     
     public TextureAtlasSprite getIcon() {
@@ -33,6 +33,10 @@ public enum EquipmentType {
     
     public void setIcon(TextureAtlasSprite icon) {
         this.icon = icon;
+    }
+    
+    public String getSlotTexture() {
+        return SextiarySector4.MODID + ":" + "guis/slot/slot_" + this.iconName;
     }
     
     public int[] getSlots() {

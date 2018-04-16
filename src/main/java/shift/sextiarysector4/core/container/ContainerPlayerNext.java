@@ -45,7 +45,7 @@ public class ContainerPlayerNext extends Container {
         //0
         for (i = 0; i < 4; ++i) {
             final EntityEquipmentSlot entityequipmentslot = VALID_EQUIPMENT_SLOTS[i];
-            this.addSlotToContainer(new Slot(par1InventoryPlayer, par1InventoryPlayer.getSizeInventory() - 1 - i, 8, 8 + i * 18) {
+            this.addSlotToContainer(new Slot(par1InventoryPlayer, par1InventoryPlayer.getSizeInventory() - 1 - i - 1, 8, 8 + i * 18) {
                 private static final String __OBFID = "CL_00001755";
                 
                 /**

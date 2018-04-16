@@ -37,8 +37,9 @@ public class SlotEquipment extends Slot {
         return 1;
     }
     
+    @Override
     @SideOnly(Side.CLIENT)
-    public TextureAtlasSprite getBackgroundIconIndex() {
+    public TextureAtlasSprite getBackgroundSprite() {
         return equipment.getIcon();
     }
 }

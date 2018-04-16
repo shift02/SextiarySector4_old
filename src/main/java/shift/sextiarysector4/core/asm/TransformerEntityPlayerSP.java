@@ -96,7 +96,7 @@ public class TransformerEntityPlayerSP implements IClassTransformer, Opcodes {
                 
                 //mv.visitVarInsn(ALOAD, 1);
                 
-                this.mv.visitMethodInsn(Opcodes.INVOKESTATIC, "shift/additionalstatus/asm/vanilla/EntityPlayerSPMethod",
+                this.mv.visitMethodInsn(Opcodes.INVOKESTATIC, "shift/sextiarysector4/core/asm/vanilla/EntityPlayerSPMethod",
                         "isSprinting", "(I)I", false);
                 
             }

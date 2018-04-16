@@ -14,7 +14,8 @@ public class SSCore implements IFMLLoadingPlugin, IFMLCallHook {
     public String[] getASMTransformerClass() {
         return new String[] {
                 "shift.sextiarysector4.core.asm.TransformerEntityPlayerSP",
-                "shift.sextiarysector4.core.asm.TransformerFoodStats" };
+                "shift.sextiarysector4.core.asm.TransformerFoodStats", //};
+                "shift.sextiarysector4.core.asm.TransformerRenderPlayer" };
     }
     
     @Override

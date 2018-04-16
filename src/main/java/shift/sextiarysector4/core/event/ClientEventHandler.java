@@ -3,15 +3,22 @@ package shift.sextiarysector4.core.event;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.util.NonNullList;
 import net.minecraftforge.client.event.RenderPlayerEvent;
+import net.minecraftforge.client.event.TextureStitchEvent;
 import net.minecraftforge.fml.client.FMLClientHandler;
 import net.minecraftforge.fml.client.event.ConfigChangedEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+import net.minecraftforge.items.ItemStackHandler;
+import shift.sextiarysector4.api.equipment.EquipmentType;
 import shift.sextiarysector4.core.SextiarySector4;
 import shift.sextiarysector4.core.capability.EntityPlayerManager;
+import shift.sextiarysector4.core.capability.EquipmentStats;
 import shift.sextiarysector4.lib.SSConfig;
 
 public class ClientEventHandler {
@@ -110,6 +117,69 @@ public class ClientEventHandler {
                 event.getEntityPlayer().rotationYaw, event.getEntityPlayer().rotationPitch);
         // event.getEntityPlayer().prevPosY = y;
         // event.entityPlayer.posY = y;
+        
+    }
+    
+    @SubscribeEvent
+    public void PreTextureStitchEvent(TextureStitchEvent.Pre event) {
+        // Item
+        for (EquipmentType type : EquipmentType.values()) {
+            type.registerIcon(event.getMap());
+        }
+    }
+    
+    public NonNullList<ItemStack> eqList = NonNullList.<ItemStack> withSize(4, ItemStack.EMPTY);
+    
+    @SubscribeEvent
+    public void doRenderPlayerEvent(RenderPlayerEvent.Pre event) {
+        
+        swapInv(event.getEntityPlayer());
+        
+        /*
+        EntityPlayer player = event.getEntityPlayer();
+        
+        eqList = (NonNullList<ItemStack>) player.getArmorInventoryList();
+        
+        EquipmentStats e = EntityPlayerManager.getEquipmentStats(player);
+        
+        for (int i = 0; i < 4; i++) {
+            if (!e.inventory.getStackInSlot(i).isEmpty()) {
+                player.setItemStackToSlot(EntityEquipmentSlot.values()[5 - i], e.inventory.getStackInSlot(i));
+            }
+        }*/
+        
+    }
+    
+    @SubscribeEvent
+    public void doRenderPlayerEvent(RenderPlayerEvent.Post event) {
+        
+        swapInv(event.getEntityPlayer());
+        
+        /*
+        EntityPlayer player = event.getEntityPlayer();
+        
+        for (int i = 0; i < 4; i++) {
+            player.setItemStackToSlot(EntityEquipmentSlot.values()[i + 2], eqList.get(i));
+        }*/
+    }
+    
+    ItemStackHandler localInv = new ItemStackHandler(4);
+    
+    private void swapInv(EntityPlayer p) {
+        
+        EquipmentStats e = EntityPlayerManager.getEquipmentStats(p);
+        for (int i = 0; i < 4; i++) {
+            if (!e.inventory.getStackInSlot(i).isEmpty()) localInv.insertItem(i, e.inventory.getStackInSlot(i), false);
+        }
+        
+        NonNullList<ItemStack> armor = p.inventory.armorInventory;
+        for (int i = 0; i < armor.size(); i++) {
+            if (!e.inventory.getStackInSlot(i).isEmpty()) e.inventory.setInventorySlotContents(i, armor.get(3 - i));
+        }
+        
+        for (int i = 0; i < localInv.getSlots(); i++) {
+            if (!e.inventory.getStackInSlot(i).isEmpty()) armor.set(3 - i, localInv.extractItem(i, 1, false));
+        }
         
     }
     

@@ -7,12 +7,23 @@ import shift.sextiarysector4.core.SextiarySector4;
 
 public enum EquipmentType {
     
-    DecorationHelmet("decoration_helmet", new int[] { 0 }), DecorationPlate("decoration_plate", new int[] { 1 }), DecorationLegs("decoration_legs", new int[] { 2 }), DecorationBoots("decoration_boots",
-            new int[] { 3 }),
+    //DecorationHelmet("decoration_helmet", new int[] { 0 }), DecorationPlate("decoration_plate", new int[] { 1 }), DecorationLegs("decoration_legs", new int[] { 2 }), DecorationBoots("decoration_boots",
+    //        new int[] { 3 }),
     //Necklace("necklace", new int[] { 4 }),
     //Ring("ring", new int[] { 5, 6, 7 }),
-    Face("face", new int[] { 4 }), Bag("bag", new int[] { 5 }), Hand("hand", new int[] { 6 }), Belt("belt", new int[] { 7 }), Unit("unit", new int[] { 8, 9, 10, 11, 12, 13, 14, 15 }), Other("other",
-            new int[] { 16, 17, 18, 19 });
+    Face("face", new int[] { 0 }),
+    Bag("bag", new int[] { 1 }),
+    Hand("hand", new int[] { 2 }),
+    Belt("belt", new int[] { 3 }),
+    Head("head", new int[] { 4 }),
+    Necklace("necklace", new int[] { 5 }),
+    Ring("ring", new int[] { 6, 7 }),
+    Other(
+            "other",
+            new int[] { 8, 9, 10, 11 }),
+    Unit(
+            "unit",
+            new int[] { 12, 13, 14, 15, 16, 17, 18, 19 });
     
     private TextureAtlasSprite icon;
     private String iconName;
@@ -52,16 +63,16 @@ public enum EquipmentType {
         switch (slot) {
         
         case 0:
-            return DecorationHelmet;
+            return Face;
         
         case 1:
-            return DecorationPlate;
+            return Bag;
         
         case 2:
-            return DecorationLegs;
+            return Hand;
         
         case 3:
-            return DecorationBoots;
+            return Belt;
         
         //case 4:
         //	return Necklace;
@@ -72,27 +83,22 @@ public enum EquipmentType {
         //	return Ring;
         
         case 4:
-            return Face;
+            return Head;
         case 5:
-            return Bag;
+            return Necklace;
         case 6:
-            return Hand;
         case 7:
-            return Belt;
+            return Ring;
         
         case 8:
         case 9:
         case 10:
         case 11:
+            return Unit;
         case 12:
         case 13:
         case 14:
         case 15:
-            //case 16:
-            //case 17:
-            //case 18:
-            //case 19:
-            return Unit;
         case 16:
         case 17:
         case 18:

@@ -92,6 +92,7 @@ public class ContainerPlayerNext extends Container {
         
         //40
         
+        /*
         this.addSlotToContainer(new SlotEquipment(EquipmentType.DecorationHelmet, this.equipment, 0, 80 + 0 * 18, 8 + 0 * 18) {
             
             @Override
@@ -168,7 +169,7 @@ public class ContainerPlayerNext extends Container {
                 return true;
             }
             
-        });
+        });*/
         
         //this.addSlotToContainer(new SlotEquipment(EquipmentType.Necklace, this.equipment, 4, 80 + 1 * 18, 8 + 0 * 18));
         //this.addSlotToContainer(new Slot(this.equipment,0, 80 + 0 * 18, 8 + 0 * 18));
@@ -177,25 +178,30 @@ public class ContainerPlayerNext extends Container {
         //this.addSlotToContainer(new SlotEquipment(EquipmentType.Ring, this.equipment, 6, 80 + 1 * 18, 8 + 2 * 18));
         //this.addSlotToContainer(new SlotEquipment(EquipmentType.Ring, this.equipment, 7, 80 + 1 * 18, 8 + 3 * 18));
         
-        this.addSlotToContainer(new SlotEquipment(EquipmentType.Face, this.equipment, 4, 80 + 1 * 18, 8 + 0 * 18));
-        this.addSlotToContainer(new SlotEquipment(EquipmentType.Bag, this.equipment, 5, 80 + 1 * 18, 8 + 1 * 18));
-        this.addSlotToContainer(new SlotEquipment(EquipmentType.Hand, this.equipment, 6, 80 + 1 * 18, 8 + 2 * 18));
-        this.addSlotToContainer(new SlotEquipment(EquipmentType.Belt, this.equipment, 7, 80 + 1 * 18, 8 + 3 * 18));
+        this.addSlotToContainer(new SlotEquipment(EquipmentType.Face, this.equipment, 4, 80 + 0 * 18, 8 + 0 * 18));
+        this.addSlotToContainer(new SlotEquipment(EquipmentType.Bag, this.equipment, 5, 80 + 0 * 18, 8 + 1 * 18));
+        this.addSlotToContainer(new SlotEquipment(EquipmentType.Hand, this.equipment, 6, 80 + 0 * 18, 8 + 2 * 18));
+        this.addSlotToContainer(new SlotEquipment(EquipmentType.Belt, this.equipment, 7, 80 + 0 * 18, 8 + 3 * 18));
         
-        this.addSlotToContainer(new SlotEquipment(EquipmentType.Unit, this.equipment, 8, 80 + 2 * 18, 8 + 0 * 18));
-        this.addSlotToContainer(new SlotEquipment(EquipmentType.Unit, this.equipment, 9, 80 + 2 * 18, 8 + 1 * 18));
-        this.addSlotToContainer(new SlotEquipment(EquipmentType.Unit, this.equipment, 10, 80 + 2 * 18, 8 + 2 * 18));
-        this.addSlotToContainer(new SlotEquipment(EquipmentType.Unit, this.equipment, 11, 80 + 2 * 18, 8 + 3 * 18));
+        this.addSlotToContainer(new SlotEquipment(EquipmentType.Head, this.equipment, 4, 80 + 1 * 18, 8 + 0 * 18));
+        this.addSlotToContainer(new SlotEquipment(EquipmentType.Necklace, this.equipment, 5, 80 + 1 * 18, 8 + 1 * 18));
+        this.addSlotToContainer(new SlotEquipment(EquipmentType.Ring, this.equipment, 6, 80 + 1 * 18, 8 + 2 * 18));
+        this.addSlotToContainer(new SlotEquipment(EquipmentType.Ring, this.equipment, 7, 80 + 1 * 18, 8 + 3 * 18));
+        
+        this.addSlotToContainer(new SlotEquipment(EquipmentType.Other, this.equipment, 8, 80 + 2 * 18, 8 + 0 * 18));
+        this.addSlotToContainer(new SlotEquipment(EquipmentType.Other, this.equipment, 9, 80 + 2 * 18, 8 + 1 * 18));
+        this.addSlotToContainer(new SlotEquipment(EquipmentType.Other, this.equipment, 10, 80 + 2 * 18, 8 + 2 * 18));
+        this.addSlotToContainer(new SlotEquipment(EquipmentType.Other, this.equipment, 11, 80 + 2 * 18, 8 + 3 * 18));
         
         this.addSlotToContainer(new SlotEquipment(EquipmentType.Unit, this.equipment, 12, 80 + 3 * 18, 8 + 0 * 18));
         this.addSlotToContainer(new SlotEquipment(EquipmentType.Unit, this.equipment, 13, 80 + 3 * 18, 8 + 1 * 18));
         this.addSlotToContainer(new SlotEquipment(EquipmentType.Unit, this.equipment, 14, 80 + 3 * 18, 8 + 2 * 18));
         this.addSlotToContainer(new SlotEquipment(EquipmentType.Unit, this.equipment, 15, 80 + 3 * 18, 8 + 3 * 18));
         
-        this.addSlotToContainer(new SlotEquipment(EquipmentType.Other, this.equipment, 16, 80 + 4 * 18, 8 + 0 * 18));
-        this.addSlotToContainer(new SlotEquipment(EquipmentType.Other, this.equipment, 17, 80 + 4 * 18, 8 + 1 * 18));
-        this.addSlotToContainer(new SlotEquipment(EquipmentType.Other, this.equipment, 18, 80 + 4 * 18, 8 + 2 * 18));
-        this.addSlotToContainer(new SlotEquipment(EquipmentType.Other, this.equipment, 19, 80 + 4 * 18, 8 + 3 * 18));
+        this.addSlotToContainer(new SlotEquipment(EquipmentType.Unit, this.equipment, 16, 80 + 4 * 18, 8 + 0 * 18));
+        this.addSlotToContainer(new SlotEquipment(EquipmentType.Unit, this.equipment, 17, 80 + 4 * 18, 8 + 1 * 18));
+        this.addSlotToContainer(new SlotEquipment(EquipmentType.Unit, this.equipment, 18, 80 + 4 * 18, 8 + 2 * 18));
+        this.addSlotToContainer(new SlotEquipment(EquipmentType.Unit, this.equipment, 19, 80 + 4 * 18, 8 + 3 * 18));
         
         //60
         

@@ -128,9 +128,11 @@ public class ClientEventHandler {
         }
     }
     
-    public NonNullList<ItemStack> eqList = NonNullList.<ItemStack> withSize(4, ItemStack.EMPTY);
+    //public NonNullList<ItemStack> eqList = NonNullList.<ItemStack> withSize(4, ItemStack.EMPTY);
     
-    @SubscribeEvent
+    ItemStackHandler eqList = new ItemStackHandler(4);
+    
+    //@SubscribeEvent
     public void doRenderPlayerEvent(RenderPlayerEvent.Pre event) {
         
         swapInv(event.getEntityPlayer());
@@ -138,29 +140,36 @@ public class ClientEventHandler {
         /*
         EntityPlayer player = event.getEntityPlayer();
         
-        eqList = (NonNullList<ItemStack>) player.getArmorInventoryList();
-        
         EquipmentStats e = EntityPlayerManager.getEquipmentStats(player);
         
+        NonNullList<ItemStack> armor = player.inventory.armorInventory;
+        
         for (int i = 0; i < 4; i++) {
+            
+            eqList.insertItem(i, armor.get(i), false);
+            
             if (!e.inventory.getStackInSlot(i).isEmpty()) {
-                player.setItemStackToSlot(EntityEquipmentSlot.values()[5 - i], e.inventory.getStackInSlot(i));
+                //player.setItemStackToSlot(EntityEquipmentSlot.values()[5 - i], e.inventory.getStackInSlot(i));
+                armor.set(3 - i, e.inventory.getStackInSlot(i));
             }
         }*/
         
     }
     
-    @SubscribeEvent
+    //@SubscribeEvent
     public void doRenderPlayerEvent(RenderPlayerEvent.Post event) {
         
         swapInv(event.getEntityPlayer());
         
-        /*
-        EntityPlayer player = event.getEntityPlayer();
+        /*EntityPlayer player = event.getEntityPlayer();
+        
+        NonNullList<ItemStack> armor = player.inventory.armorInventory;
         
         for (int i = 0; i < 4; i++) {
-            player.setItemStackToSlot(EntityEquipmentSlot.values()[i + 2], eqList.get(i));
+            armor.set(i, eqList.extractItem(i, 1, false));
+            //player.setItemStackToSlot(EntityEquipmentSlot.values()[i + 2], eqList.get(i));
         }*/
+        
     }
     
     ItemStackHandler localInv = new ItemStackHandler(4);

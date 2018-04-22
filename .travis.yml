@@ -21,12 +21,13 @@ cache:
     
 deploy:
   provider: releases
+  skip_cleanup: true
   api_key:
-    secure: "FfpD6i5LjPvIzQ6OACn0/qE8meAUM5aJDz9+5RKvX4XvR8cgtTyqTa0sXnppV/YtxzlTqi18mhUALGk1sMXp5bquQnzH6EqafzCMN7nKkPRdv/HhUq99brtfoQG0QLj55JnPTRbaxm69RiKSfwc/M2FFLVcG8DxwIsKbG+HjVs3WsUNX20E5x8L3y7C06D5imVHVsUnJcwwDPYQQNk+sXzm8vAs/IYlhETx5Gfq5M1wo1D+Fr/gY5sV9DxJInVdWpZiDhjSl7xUrZJbeffUrDyMGDCMcw5Z+R09bQ20KSbynipf+F0D92mHFdaiPFKaNf+RAaMBpSI8w/Xs32wD/bhH8R0RsfL2AOM5xhL7mCDlg7N5KlmxVFYP8tNb3H3g+hGFvkX0RZvu78Rq1qqSfj1yFrf/UmQgHftC9+LxDhyW6yz3CKfi7BApoBPzXSYIVUmKadY3S0Fm9M2+KHd/g55PE0ed19Zp7sO30jphPVaBeysV+3Ssl7AJYpk/bb5hPInIp2BcmKBb2S7p1fZE7bdQveDfoHhMizX8e294E+emSpVnceMbtm/0S2/JGNFhocTysw01MH7bd4JSHrYyZRa9JdzrdNOnAkgjPS1tGM0wqjYckYV8B5NYslwcT7CJFk5aLeFvhgGOTHQ4JDeStEmcuntz9SxoU0ahAaYh82BQ="
+    secure: "cNkeVLfC5ZERuj4rts6ktirtauszU4nfr1CIVdY4vRyq+k4yFE/iySQfOau8/bvOP56KAVfk/ihU4DdrXcdzRnFd7s3x97cSYOmCCXcrIPmZL2Ew45WTwunLw4q5ojQELFJFBTzXnHgo+g6/tb7pXp9as5E4IvXR3f7su1g57ej55sNHxfFS8yP+OZ6gtgTM6tPo+Wy4rSqCgipL+XtWbWdnDp6AN4krb4Lh1pk/JyIXJwTnbfvXFEx94N0g1LESZv7NoISvFECqsfThhMjZYJrH8Rc7dXUrJvQ5pDwnYp7TE3wx6IHiPjEfGa9Iw4uUcQ6Aud0cJ9Ab2zLoy5N0l+jCq9J67Iu3fBbR+gl32nY61VAv6Y59yACuCuBJpwJ5qhWTP5xPex5hNS5eZ8QFgJN9fhi3MonNGepy2HzOVZOBzY0s9LouYApKmTzfdV3VQiuR/FLcR7J14/aSmjwj37OntMExAmvj9zFhGP6oDdBLKpCPqrvizrAaw1vCub3U2eW7YPMdn+czTYKd6hmxUqBqo3A/L9/qrcMQ+0PaGKAR0loUEL+0U2EMGPJCz6/LgN+w56AIfFKI/ap/t9MnVaaqbL048BZxdRNDwz0gxG5dik2DlcLRads7dpx0R3bzsNjs/KDHGhJqXBlCIZaCyGHTjdwx5AihAMm8WkA6Rb4="
   file: "build/libs/*.{jar,zip}"
   on:
     repo: shift02/SextiarySector4
     tags: true
     all_branches: true
     condition: "$TRAVIS_TAG =~ ^version/[0-9].*$"
-  skip_cleanup: true
+  

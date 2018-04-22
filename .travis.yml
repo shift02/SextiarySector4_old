@@ -17,3 +17,17 @@ cache:
   directories:
     - $HOME/.gradle/caches/
     - $HOME/.gradle/wrapper/
+    
+    
+deploy:
+  provider: releases
+  api_key:
+    secure: "DfV1878MG9YMgQgo2x9X9yAPBuMFbv4JvNsAe9dtY+hfEEj/pBt/PaKRrzhE4PUWmqgduaohuutBz78lyokyL/Ja9Lx6ajrJxe8fskccc+8y5beWT2X4EElO6PwFKexXe8fc4vy5bZ0KqLxc51DPWTuOwzYbtjyxQ5KS6h3/6NBqLBWrkpl1DbOudEWoHLXuH1M4xCvy1Zi0k6J4CepAux4HSMGTS4ID+UR44epjsAscK13vyGqRxgGQe0/FBymo9YZG86IZ8jAnyXmruaew+3qm2owdUHXLQYvVDO48VXic5muwW+yrGrewLYKyuIWP5Gu4pA5IxIigBRcnMv0D4HfGrlHJDM5/DbRUGOHKqXLUs9VwB2kPRIyaQFwBByo6rjojziVNjgygR3WRyUFwTg0QRRnmmNgkvhp8xVFXYfQhnlpbpil6IvU/p+W4K/8Hn/2WHTsLtXPXSaQr37JZLU3qjEVshC2L8E2zI03/5ywu/4edDro2G6W7XTZOnSFceYUMPdymVjNeCoA6ZKj5eciptWNfT3AUWHLItoJLd9PTltmScBpNgc/Aljm88694XbAVUWfdN5UAKehPFLuw26bra8Lc7ZFW0hV1opCQWIHO5erUSz3QlflXO+8Bc3kUCIJvUzMFBqBWU49ty/DXKt+IotbuvbvU9WiJYD08YlI="
+  file:
+  - "build/libs/*.{jar,zip}"
+  on:
+    repo: shift02/SextiarySector4
+    tags: true
+    all_branches: true
+    condition: "$TRAVIS_TAG =~ ^version/[0-9].*$"
+  skip_cleanup: true

@@ -24,6 +24,7 @@ deploy:
   skip_cleanup: true
   api_key:
     secure: "cNkeVLfC5ZERuj4rts6ktirtauszU4nfr1CIVdY4vRyq+k4yFE/iySQfOau8/bvOP56KAVfk/ihU4DdrXcdzRnFd7s3x97cSYOmCCXcrIPmZL2Ew45WTwunLw4q5ojQELFJFBTzXnHgo+g6/tb7pXp9as5E4IvXR3f7su1g57ej55sNHxfFS8yP+OZ6gtgTM6tPo+Wy4rSqCgipL+XtWbWdnDp6AN4krb4Lh1pk/JyIXJwTnbfvXFEx94N0g1LESZv7NoISvFECqsfThhMjZYJrH8Rc7dXUrJvQ5pDwnYp7TE3wx6IHiPjEfGa9Iw4uUcQ6Aud0cJ9Ab2zLoy5N0l+jCq9J67Iu3fBbR+gl32nY61VAv6Y59yACuCuBJpwJ5qhWTP5xPex5hNS5eZ8QFgJN9fhi3MonNGepy2HzOVZOBzY0s9LouYApKmTzfdV3VQiuR/FLcR7J14/aSmjwj37OntMExAmvj9zFhGP6oDdBLKpCPqrvizrAaw1vCub3U2eW7YPMdn+czTYKd6hmxUqBqo3A/L9/qrcMQ+0PaGKAR0loUEL+0U2EMGPJCz6/LgN+w56AIfFKI/ap/t9MnVaaqbL048BZxdRNDwz0gxG5dik2DlcLRads7dpx0R3bzsNjs/KDHGhJqXBlCIZaCyGHTjdwx5AihAMm8WkA6Rb4="
+  file_glob: true
   file: "build/libs/*.{jar,zip}"
   on:
     repo: shift02/SextiarySector4

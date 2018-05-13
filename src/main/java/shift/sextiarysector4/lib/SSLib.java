@@ -21,6 +21,8 @@ public class SSLib {
         
         SSConfig.syncConfig();
         
+        SSCreativeTabs.initCreativeTabs();
+        
     }
     
 }

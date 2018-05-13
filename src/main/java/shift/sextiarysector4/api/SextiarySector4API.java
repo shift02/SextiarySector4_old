@@ -1,5 +1,6 @@
 package shift.sextiarysector4.api;
 
+import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.player.EntityPlayer;
 import shift.sextiarysector4.api.capability.ItemDrink;
 import shift.sextiarysector4.api.capability.VanillaFoodHandler;
@@ -8,6 +9,24 @@ public class SextiarySector4API {
     
     /** ModID */
     public static final String MODID = "sextiarysector4lib";
+    
+    /*
+     * -------------------------------------------
+     * CreativeTabs クリエイティブタブ
+     * -------------------------------------------
+     */
+    
+    public static CreativeTabs TabSSCore;
+    public static CreativeTabs TabSSFluid;
+    public static CreativeTabs TabSSPlayer;
+    public static CreativeTabs TabSSAgriculture;
+    public static CreativeTabs TabSSFishery;
+    public static CreativeTabs TabSSMining;
+    public static CreativeTabs TabSSIndustry;
+    public static CreativeTabs TabSSCooking;
+    public static CreativeTabs TabSSTransport;
+    public static CreativeTabs TabSSEconomy;
+    public static CreativeTabs TabSSMagic;
     
     public static IPlayerManager playerManager;
     

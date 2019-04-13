@@ -1,0 +1,6 @@
+{
+  "parent": "block/cube_all",
+  "textures": {
+    "all": "sextiarysector4:blocks/animal_oil_block"
+  }
+}

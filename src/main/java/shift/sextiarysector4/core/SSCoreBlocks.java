@@ -5,12 +5,14 @@ import net.minecraft.block.material.Material;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemGroup;
+import net.minecraft.tileentity.TileEntityType;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.registries.IForgeRegistry;
 import net.minecraftforge.registries.ObjectHolder;
 import shift.sextiarysector4.core.block.BlockTank;
+import shift.sextiarysector4.core.tileentity.TileEntityTank;
 
 @ObjectHolder(SextiarySector4.MOD_ID)
 public class SSCoreBlocks {
@@ -21,6 +23,8 @@ public class SSCoreBlocks {
     @ObjectHolder("tank")
     public static Block tank;
 
+    @ObjectHolder("tank")
+    public static TileEntityType<?> tileEntityTank;
 
     @Mod.EventBusSubscriber(bus = Mod.EventBusSubscriber.Bus.MOD)
     public static class Register {
@@ -32,8 +36,7 @@ public class SSCoreBlocks {
             IForgeRegistry<Block> registry = blockRegistryEvent.getRegistry();
             registry.register(new Block(Block.Properties.create(Material.CLAY).hardnessAndResistance(3.0F, 3.0F)).setRegistryName(SextiarySector4.MOD_ID, "animal_oil_block"));
 
-            registry.register(new BlockTank(Block.Properties.create(Material.GLASS).hardnessAndResistance(3.0F, 3.0F)).setRegistryName(SextiarySector4.MOD_ID, "tank"));
-
+            registry.register(new BlockTank(Block.Properties.create(Material.GLASS).hardnessAndResistance(3.0F, 3.0F)).setCreateTileEntityFunction(TileEntityTank::new).setRegistryName(SextiarySector4.MOD_ID, "tank"));
 
         }
 
@@ -48,6 +51,14 @@ public class SSCoreBlocks {
 
         }
 
+        @SubscribeEvent
+        public static void onTileEntityTypeRegistry(final RegistryEvent.Register<TileEntityType<?>> tileEntityTypeRegistryEvent) {
+            // register a new block here
+
+            IForgeRegistry<TileEntityType<?>> registry = tileEntityTypeRegistryEvent.getRegistry();
+            registry.register(TileEntityType.Builder.create(TileEntityTank::new).build(null).setRegistryName(SextiarySector4.MOD_ID, "tank"));
+
+        }
 
     }
 

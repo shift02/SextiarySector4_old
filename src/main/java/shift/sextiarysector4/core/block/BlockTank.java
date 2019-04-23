@@ -96,7 +96,7 @@ public class BlockTank extends Block {
 
     @Override
     public boolean hasTileEntity(IBlockState state) {
-        return true;
+        return createTileEntityFunction != null;
     }
 
     @Nullable

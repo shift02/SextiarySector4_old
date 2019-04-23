@@ -53,7 +53,7 @@ public class SSCoreBlocks {
 
         @SubscribeEvent
         public static void onTileEntityTypeRegistry(final RegistryEvent.Register<TileEntityType<?>> tileEntityTypeRegistryEvent) {
-            // register a new block here
+            // register a new tile entity here
 
             IForgeRegistry<TileEntityType<?>> registry = tileEntityTypeRegistryEvent.getRegistry();
             registry.register(TileEntityType.Builder.create(TileEntityTank::new).build(null).setRegistryName(SextiarySector4.MOD_ID, "tank"));

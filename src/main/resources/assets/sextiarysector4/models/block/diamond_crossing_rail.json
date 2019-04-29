@@ -1,0 +1,6 @@
+{
+  "parent": "block/rail_flat",
+  "textures": {
+    "rail": "sextiarysector4:blocks/diamond_crossing_rail"
+  }
+}

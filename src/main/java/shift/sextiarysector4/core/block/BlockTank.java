@@ -10,6 +10,12 @@ import javax.annotation.Nullable;
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.fluid.IFluidState;
+import net.minecraft.init.Fluids;
+import net.minecraft.item.BlockItemUseContext;
+import net.minecraft.state.BooleanProperty;
+import net.minecraft.state.StateContainer;
+import net.minecraft.state.properties.BlockStateProperties;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.BlockRenderLayer;
 import net.minecraft.util.EnumFacing;
@@ -18,6 +24,7 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.shapes.VoxelShape;
 import net.minecraft.util.math.shapes.VoxelShapes;
 import net.minecraft.world.IBlockReader;
+import net.minecraft.world.IWorld;
 import net.minecraft.world.World;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
@@ -26,12 +33,22 @@ import shift.sextiarysector4.core.tileentity.IFeatureBlock;
 /**
  * 液体を入れるタンク
  */
-public class BlockTank extends Block {
+public class BlockTank extends Block implements IFluidWaterBlock {
 
     protected BiFunction<IBlockState, IBlockReader, TileEntity> createTileEntityFunction;
 
+    public static final BooleanProperty WATERLOGGED = BlockStateProperties.WATERLOGGED;
+
+
     public BlockTank(Properties properties) {
         super(properties);
+
+        this.setDefaultState(this.stateContainer.getBaseState().with(WATERLOGGED, Boolean.valueOf(false)));
+
+    }
+
+    protected void fillStateContainer(StateContainer.Builder<Block, IBlockState> builder) {
+        builder.add(WATERLOGGED);
     }
 
     public Block setCreateTileEntityFunction(BiFunction<IBlockState, IBlockReader, TileEntity> createTileEntityFunction) {
@@ -104,4 +121,29 @@ public class BlockTank extends Block {
     public TileEntity createTileEntity(IBlockState state, IBlockReader world) {
         return createTileEntityFunction.apply(state, world);
     }
+
+    //液体関係
+    @Override
+    @Nonnull
+    public IBlockState updatePostPlacement(@Nonnull IBlockState stateIn, EnumFacing facing, IBlockState facingState, IWorld worldIn, BlockPos currentPos, BlockPos facingPos) {
+        if (stateIn.get(WATERLOGGED)) {
+            worldIn.getPendingFluidTicks().scheduleTick(currentPos, Fluids.WATER, Fluids.WATER.getTickRate(worldIn));
+        }
+        return super.updatePostPlacement(stateIn, facing, facingState, worldIn, currentPos, facingPos);
+    }
+
+    @Override
+    @Nonnull
+    public IFluidState getFluidState(IBlockState state) {
+        //ここで自分自身が持っているFluidを返す必要がある
+        return state.get(WATERLOGGED) ? Fluids.WATER.getStillFluidState(false) : super.getFluidState(state);
+    }
+
+    @Override
+    public IBlockState getStateForPlacement(BlockItemUseContext context) {
+        IFluidState ifluidstate = context.getWorld().getFluidState(context.getPos());
+
+        return this.getDefaultState().with(WATERLOGGED, ifluidstate.getFluid() == Fluids.WATER);
+    }
 }
+

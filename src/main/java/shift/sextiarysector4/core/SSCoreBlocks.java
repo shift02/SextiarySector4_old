@@ -12,6 +12,7 @@ import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.registries.IForgeRegistry;
 import net.minecraftforge.registries.ObjectHolder;
+import shift.sextiarysector4.core.block.BlockAnimalOil;
 import shift.sextiarysector4.core.block.BlockRailDiamondCrossing;
 import shift.sextiarysector4.core.block.BlockTank;
 import shift.sextiarysector4.core.tileentity.TileEntityTank;
@@ -38,7 +39,7 @@ public class SSCoreBlocks {
             // register a new block here
 
             IForgeRegistry<Block> registry = blockRegistryEvent.getRegistry();
-            registry.register(new Block(Block.Properties.create(Material.CLAY).hardnessAndResistance(3.0F, 3.0F)).setRegistryName(SextiarySector4.MOD_ID, "animal_oil_block"));
+            registry.register(new BlockAnimalOil(Block.Properties.create(Material.CLAY).hardnessAndResistance(3.0F, 3.0F)).setRegistryName(SextiarySector4.MOD_ID, "animal_oil_block"));
 
             registry.register(new BlockTank(Block.Properties.create(Material.GLASS).hardnessAndResistance(3.0F, 3.0F)).setCreateTileEntityFunction(TileEntityTank::new).setRegistryName(SextiarySector4.MOD_ID, "tank"));
 

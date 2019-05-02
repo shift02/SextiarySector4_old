@@ -10,7 +10,28 @@ loaderVersion="[25,)" #mandatory (24 is current forge version)
 # A URL to refer people to when problems occur with this mod
 issueTrackerURL="http://my.issue.tracker/" #optional
 
-# A list of mods - how many allowed here is determined by the individual mod loader
+# modのリスト - ここでいくつ許可されているかは個々のmodローダーによって決定されます
+[[mods]] #mandatory
+# The modid of the mod
+modId="sextiarysector4lib" #mandatory
+# The version number of the mod - there's a few well known ${} variables useable here or just hardcode it
+version="${file.jarVersion}" #mandatory
+# A display name for the mod
+displayName="SextiarySector4 Lib" #mandatory
+# A URL to query for updates for this mod. See the JSON update specification <here>
+updateJSONURL="http://myurl.me/" #optional
+# A URL for the "homepage" for this mod, displayed in the mod UI
+displayURL="https://github.com/shift02/SextiarySector4" #optional
+# A text field displayed in the mod UI
+credits="シフト (Shift)" #optional
+# A text field displayed in the mod UI
+authors="シフト (Shift)" #optional
+# The description text for the mod (multi line!) (#mandatory)
+description='''
+Library mod used by sextiarysector4.
+'''
+parent="sextiarysector4"
+
 [[mods]] #mandatory
 # The modid of the mod
 modId="sextiarysector4" #mandatory
@@ -25,17 +46,16 @@ displayURL="https://github.com/shift02/SextiarySector4" #optional
 # A file name (in the root of the mod JAR) containing a logo for display
 logoFile="sextiarysector4_logo.png" #optional
 # A text field displayed in the mod UI
-credits="shift02" #optional
+credits="シフト (Shift)" #optional
 # A text field displayed in the mod UI
-authors="shift02" #optional
+authors="シフト (Shift)" #optional
 # The description text for the mod (multi line!) (#mandatory)
 description='''
 マインクラフトの世界に第六次産業の概念を追加するMod
 '''
 
-
 # A dependency - use the . to indicate dependency for a specific modid. Dependencies are optional.
-[[dependencies.examplemod]] #optional
+[[dependencies.sextiarysector4]] #optional
     # the modid of the dependency
     modId="forge" #mandatory
     # Does this dependency have to exist - if not, ordering below must be specified
@@ -47,7 +67,7 @@ description='''
     # Side this dependency is applied on - BOTH, CLIENT or SERVER
     side="BOTH"
 # Here's another dependency
-[[dependencies.examplemod]]
+[[dependencies.sextiarysector4]]
     modId="minecraft"
     mandatory=true
     versionRange="[1.13.2]"

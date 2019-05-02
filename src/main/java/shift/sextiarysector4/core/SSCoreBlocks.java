@@ -5,7 +5,6 @@ import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemBlock;
-import net.minecraft.item.ItemGroup;
 import net.minecraft.tileentity.TileEntityType;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
@@ -53,11 +52,11 @@ public class SSCoreBlocks {
             // register a new block here
 
             IForgeRegistry<Item> registry = itemRegistryEvent.getRegistry();
-            registry.register(new ItemBlock(animalOilBlock, new Item.Properties().group(ItemGroup.FOOD)).setRegistryName(SextiarySector4.MOD_ID, "animal_oil_block"));
+            registry.register(new ItemBlock(animalOilBlock, new Item.Properties().group(SSCoreItemGroups.CORE)).setRegistryName(SextiarySector4.MOD_ID, "animal_oil_block"));
 
-            registry.register(new ItemBlock(tank, new Item.Properties().group(ItemGroup.FOOD)).setRegistryName(SextiarySector4.MOD_ID, "tank"));
+            registry.register(new ItemBlock(tank, new Item.Properties().group(SSCoreItemGroups.CORE)).setRegistryName(SextiarySector4.MOD_ID, "tank"));
 
-            registry.register(new ItemBlock(diamondCrossingRail, new Item.Properties().group(ItemGroup.FOOD)).setRegistryName(SextiarySector4.MOD_ID, "diamond_crossing_rail"));
+            registry.register(new ItemBlock(diamondCrossingRail, new Item.Properties().group(SSCoreItemGroups.CORE)).setRegistryName(SextiarySector4.MOD_ID, "diamond_crossing_rail"));
 
 
         }

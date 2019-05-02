@@ -1,7 +1,6 @@
 package shift.sextiarysector4.core;
 
 import net.minecraft.item.Item;
-import net.minecraft.item.ItemGroup;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
@@ -20,7 +19,7 @@ public class SSCoreItems {
             // register a new block here
 
             IForgeRegistry<Item> registry = itemRegistryEvent.getRegistry();
-            registry.register(new Item(new Item.Properties().group(ItemGroup.FOOD)).setRegistryName(SextiarySector4.MOD_ID, "animal_oil"));
+            registry.register(new Item(new Item.Properties().group(SSCoreItemGroups.CORE)).setRegistryName(SextiarySector4.MOD_ID, "animal_oil"));
 
         }
 

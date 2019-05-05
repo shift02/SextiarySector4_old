@@ -1,9 +1,9 @@
 {
   "parent": "block/block",
   "textures": {
-    "side": "sextiarysector4:blocks/tank_side",
-    "top": "sextiarysector4:blocks/tank_top",
-    "particle": "sextiarysector4:blocks/tank_top"
+    "side": "sextiarysector4:block/tank_side",
+    "top": "sextiarysector4:block/tank_top",
+    "particle": "sextiarysector4:block/tank_top"
   },
   "elements": [
     {

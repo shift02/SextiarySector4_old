@@ -12,8 +12,10 @@ import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.registries.IForgeRegistry;
 import net.minecraftforge.registries.ObjectHolder;
 import shift.sextiarysector4.core.block.BlockAnimalOil;
+import shift.sextiarysector4.core.block.BlockFreezer;
 import shift.sextiarysector4.core.block.BlockRailDiamondCrossing;
 import shift.sextiarysector4.core.block.BlockTank;
+import shift.sextiarysector4.core.tileentity.TileEntityFreezer;
 import shift.sextiarysector4.core.tileentity.TileEntityTank;
 
 @ObjectHolder(SextiarySector4.MOD_ID)
@@ -30,6 +32,12 @@ public class SSCoreBlocks {
     @ObjectHolder("diamond_crossing_rail")
     public static Block diamondCrossingRail;
 
+
+    @ObjectHolder("freezer")
+    public static Block freezer;
+    @ObjectHolder("freezer")
+    public static TileEntityType<?> tileEntityFreezer;
+
     @Mod.EventBusSubscriber(bus = Mod.EventBusSubscriber.Bus.MOD)
     public static class Register {
 
@@ -43,6 +51,8 @@ public class SSCoreBlocks {
             registry.register(new BlockTank(Block.Properties.create(Material.GLASS).hardnessAndResistance(3.0F, 3.0F)).setCreateTileEntityFunction(TileEntityTank::new).setRegistryName(SextiarySector4.MOD_ID, "tank"));
 
             registry.register(new BlockRailDiamondCrossing(Block.Properties.create(Material.CIRCUITS).doesNotBlockMovement().hardnessAndResistance(0.7F).sound(SoundType.METAL)).setRegistryName(SextiarySector4.MOD_ID, "diamond_crossing_rail"));
+
+            registry.register(new BlockFreezer(Block.Properties.create(Material.IRON).hardnessAndResistance(3.0F, 3.0F)).setCreateTileEntityFunction(TileEntityFreezer::new).setRegistryName(SextiarySector4.MOD_ID, "freezer"));
 
 
         }
@@ -58,6 +68,8 @@ public class SSCoreBlocks {
 
             registry.register(new ItemBlock(diamondCrossingRail, new Item.Properties().group(SSCoreItemGroups.CORE)).setRegistryName(SextiarySector4.MOD_ID, "diamond_crossing_rail"));
 
+            registry.register(new ItemBlock(freezer, new Item.Properties().group(SSCoreItemGroups.CORE)).setRegistryName(SextiarySector4.MOD_ID, "freezer"));
+
 
         }
 
@@ -66,7 +78,11 @@ public class SSCoreBlocks {
             // register a new tile entity here
 
             IForgeRegistry<TileEntityType<?>> registry = tileEntityTypeRegistryEvent.getRegistry();
+
             registry.register(TileEntityType.Builder.create(TileEntityTank::new).build(null).setRegistryName(SextiarySector4.MOD_ID, "tank"));
+
+            registry.register(TileEntityType.Builder.create(TileEntityFreezer::new).build(null).setRegistryName(SextiarySector4.MOD_ID, "freezer"));
+
 
         }
 

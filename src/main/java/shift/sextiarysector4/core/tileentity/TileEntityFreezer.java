@@ -13,30 +13,40 @@ import net.minecraft.init.Items;
 import net.minecraft.inventory.Container;
 import net.minecraft.inventory.IRecipeHelperPopulator;
 import net.minecraft.inventory.IRecipeHolder;
+import net.minecraft.inventory.ISidedInventory;
 import net.minecraft.inventory.SlotFurnaceFuel;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.IRecipe;
 import net.minecraft.item.crafting.RecipeItemHelper;
 import net.minecraft.tileentity.TileEntityLockable;
+import net.minecraft.util.EnumFacing;
 import net.minecraft.util.ITickable;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.text.ITextComponent;
-import net.minecraft.util.text.TextComponentTranslation;
 import shift.sextiarysector4.core.SSCoreBlocks;
 import shift.sextiarysector4.core.SextiarySector4;
 import shift.sextiarysector4.lib.ItemBox;
+import shift.sextiarysector4.lib.tileentity.CustomName;
 import shift.sextiarysector4.lib.util.NamespaceHelper;
 
-public class TileEntityFreezer extends TileEntityLockable implements IRecipeHolder, IRecipeHelperPopulator, ITickable {
+public class TileEntityFreezer extends TileEntityLockable implements ISidedInventory, IRecipeHolder, IRecipeHelperPopulator, ITickable {
 
     private ItemBox itemBox;
+
+    //それぞれの方角からどのスロットにアクセスできるかの設定
+    private static final int[] SLOTS_TOP = new int[]{0};
+    private static final int[] SLOTS_BOTTOM = new int[]{2, 1};
+    private static final int[] SLOTS_SIDES = new int[]{1};
 
     private int furnaceBurnTime;
 
     private int currentItemBurnTime;
     private int cookTime;
     private int totalCookTime;
-    private ITextComponent furnaceCustomName;
+
+
+    private CustomName customName;
 
     //経験値を反映させるための記録
     private final Map<ResourceLocation, Integer> recipeUseCounts = Maps.newHashMap();
@@ -45,6 +55,8 @@ public class TileEntityFreezer extends TileEntityLockable implements IRecipeHold
         super(SSCoreBlocks.tileEntityFreezer);
 
         this.itemBox = new ItemBox(3, 64);
+
+        this.customName = new CustomName("container.freezer");
 
     }
 
@@ -61,7 +73,7 @@ public class TileEntityFreezer extends TileEntityLockable implements IRecipeHold
 
     //レシピ関係
     @Override
-    public void fillStackedContents(RecipeItemHelper helper) {
+    public void fillStackedContents(@Nonnull RecipeItemHelper helper) {
         for (ItemStack itemstack : this.itemBox) {
             helper.accountStack(itemstack);
         }
@@ -69,6 +81,11 @@ public class TileEntityFreezer extends TileEntityLockable implements IRecipeHold
 
     @Override
     public void setRecipeUsed(@Nullable IRecipe recipe) {
+
+        if (recipe == null) {
+            return;
+        }
+
         if (this.recipeUseCounts.containsKey(recipe.getId())) {
             this.recipeUseCounts.put(recipe.getId(), this.recipeUseCounts.get(recipe.getId()) + 1);
         } else {
@@ -221,22 +238,55 @@ public class TileEntityFreezer extends TileEntityLockable implements IRecipeHold
     @Override
     @Nonnull
     public ITextComponent getName() {
-        return (ITextComponent) (this.furnaceCustomName != null ? this.furnaceCustomName : new TextComponentTranslation("container.freezer"));
+        return this.customName.getName();
     }
 
     @Override
     public boolean hasCustomName() {
-        return this.furnaceCustomName != null;
+        return this.customName.hasCustomName();
     }
 
     @Nullable
     @Override
     public ITextComponent getCustomName() {
-        return this.furnaceCustomName;
+        return this.customName.getCustomName();
     }
 
     public void setCustomName(@Nullable ITextComponent name) {
-        this.furnaceCustomName = name;
+        this.customName.setCustomName(name);
     }
 
+    //Sideインベントリ
+    @Override
+    @Nonnull
+    public int[] getSlotsForFace(@Nonnull EnumFacing side) {
+
+        switch (side) {
+            case DOWN:
+                return SLOTS_BOTTOM;
+            case UP:
+                return SLOTS_TOP;
+            default:
+                return SLOTS_SIDES;
+        }
+
+    }
+
+    @Override
+    public boolean canInsertItem(int index, @Nonnull ItemStack itemStackIn, @Nullable EnumFacing direction) {
+        return this.isItemValidForSlot(index, itemStackIn);
+    }
+
+    @Override
+    public boolean canExtractItem(int index, @Nonnull ItemStack stack, @Nonnull EnumFacing direction) {
+
+        if (direction == EnumFacing.DOWN && index == 1) {
+            Item item = stack.getItem();
+            if (item != Items.WATER_BUCKET && item != Items.BUCKET) {
+                return false;
+            }
+        }
+
+        return true;
+    }
 }

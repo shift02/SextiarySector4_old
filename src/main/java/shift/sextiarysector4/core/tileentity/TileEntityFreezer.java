@@ -87,9 +87,7 @@ public class TileEntityFreezer extends TileEntityLockable implements IFeatureBlo
         }
 
         if (!this.world.isRemote) {
-
-            System.out.println(this.cookTime + ":" + this.totalCookTime);
-
+            
             ItemStack itemstack = this.itemBox.getStackInSlot(1);
             if (this.isBurning() || !itemstack.isEmpty() && !this.itemBox.getStackInSlot(0).isEmpty()) {
                 IRecipe irecipe = this.getCurrentRecipe();
@@ -279,10 +277,9 @@ public class TileEntityFreezer extends TileEntityLockable implements IFeatureBlo
 
     @Override
     public void setInventorySlotContents(int index, @Nonnull ItemStack stack) {
-        this.itemBox.setInventorySlotContents(index, stack);
-
         ItemStack itemstack = this.itemBox.getStackInSlot(index);
         boolean flag = !stack.isEmpty() && stack.isItemEqual(itemstack) && ItemStack.areItemStackTagsEqual(stack, itemstack);
+        this.itemBox.setInventorySlotContents(index, stack);
 
         if (index == 0 && !flag) {
             this.totalCookTime = this.getCookTime();

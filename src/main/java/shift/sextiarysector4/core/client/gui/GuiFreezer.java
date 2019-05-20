@@ -2,6 +2,7 @@ package shift.sextiarysector4.core.client.gui;
 
 import net.minecraft.client.gui.GuiButtonImage;
 import net.minecraft.client.gui.inventory.GuiContainer;
+import net.minecraft.client.gui.recipebook.GuiFurnaceRecipeBook;
 import net.minecraft.client.gui.recipebook.GuiRecipeBook;
 import net.minecraft.client.gui.recipebook.IRecipeShownListener;
 import net.minecraft.client.renderer.GlStateManager;
@@ -13,7 +14,6 @@ import net.minecraft.inventory.Slot;
 import net.minecraft.tileentity.TileEntityFurnace;
 import net.minecraft.util.ResourceLocation;
 import shift.sextiarysector4.core.SextiarySector4;
-import shift.sextiarysector4.core.client.gui.recipebook.GuiRecipeBookBase;
 import shift.sextiarysector4.inventory.ContainerFreezer;
 
 public class GuiFreezer extends GuiContainer implements IRecipeShownListener {
@@ -26,7 +26,7 @@ public class GuiFreezer extends GuiContainer implements IRecipeShownListener {
      */
     private final InventoryPlayer playerInventory;
     private final IInventory tileFurnace;
-    public final GuiRecipeBookBase recipeBook = new GuiRecipeBookBase();
+    public final GuiFurnaceRecipeBook recipeBook = new GuiFurnaceRecipeBook();
     private boolean canRenderRecipeBook;
 
     public GuiFreezer(InventoryPlayer playerInv, IInventory furnaceInv) {

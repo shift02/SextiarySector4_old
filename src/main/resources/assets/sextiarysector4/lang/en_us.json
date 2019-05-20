@@ -3,5 +3,7 @@
   "block.sextiarysector4.animal_oil_block": "Animal Oil Block",
   "block.sextiarysector4.tank": "Tank",
   "block.sextiarysector4.diamond_crossing_rail": "Diamond Crossing Rail",
+  "block.sextiarysector4.freezer": "Freezer",
+  "container.sextiarysector4.freezer": "Freezer",
   "itemGroup.sextiarysector4.core": "SextiarySector4 -Core-"
 }

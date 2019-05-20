@@ -9,20 +9,32 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.ItemStackHelper;
 import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.NonNullList;
 import net.minecraft.util.text.ITextComponent;
+import net.minecraftforge.common.util.INBTSerializable;
 
 /**
  * ItemStackの処理を楽にするラッパークラス
  */
-public class ItemBox implements IInventory, Iterable<ItemStack> {
+public class ItemBox implements IInventory, Iterable<ItemStack>, INBTSerializable<NBTTagCompound> {
 
+    private final int size;
     private final NonNullList<ItemStack> itemStacks;
     private final int limit;
 
     public ItemBox(int size, int limit) {
+        this.size = size;
         this.itemStacks = NonNullList.withSize(size, ItemStack.EMPTY);
         this.limit = limit;
+    }
+
+    public int getSize() {
+        return this.size;
+    }
+
+    public ItemBox newEmpty() {
+        return new ItemBox(this.getSize(), this.getInventoryStackLimit());
     }
 
     @Override
@@ -138,6 +150,21 @@ public class ItemBox implements IInventory, Iterable<ItemStack> {
     @Nonnull
     public Iterator<ItemStack> iterator() {
         return this.itemStacks.iterator();
+    }
+
+    //NBT関係
+    @Override
+    public NBTTagCompound serializeNBT() {
+
+        NBTTagCompound nbt = new NBTTagCompound();
+        ItemStackHelper.saveAllItems(nbt, this.itemStacks);
+
+        return nbt;
+    }
+
+    @Override
+    public void deserializeNBT(NBTTagCompound nbt) {
+        ItemStackHelper.loadAllItems(nbt, this.itemStacks);
     }
 
 }

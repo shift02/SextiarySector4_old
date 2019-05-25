@@ -20,7 +20,6 @@ import net.minecraft.inventory.ISidedInventory;
 import net.minecraft.inventory.SlotFurnaceFuel;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.item.crafting.FurnaceRecipe;
 import net.minecraft.item.crafting.IRecipe;
 import net.minecraft.item.crafting.RecipeItemHelper;
 import net.minecraft.nbt.NBTTagCompound;
@@ -36,11 +35,14 @@ import net.minecraft.world.World;
 import net.minecraftforge.common.util.FakePlayer;
 import net.minecraftforge.fml.network.NetworkHooks;
 import shift.sextiarysector4.core.SSCoreBlocks;
+import shift.sextiarysector4.core.SSCoreRecipeTypes;
 import shift.sextiarysector4.core.SextiarySector4;
 import shift.sextiarysector4.core.block.BlockFreezer;
+import shift.sextiarysector4.core.common.crafting.FreezerRecipe;
 import shift.sextiarysector4.inventory.ContainerFreezer;
 import shift.sextiarysector4.lib.ItemBox;
 import shift.sextiarysector4.lib.recipe.FreezerFuel;
+import shift.sextiarysector4.lib.recipe.ISimpleRecipe;
 import shift.sextiarysector4.lib.tileentity.CustomName;
 import shift.sextiarysector4.lib.util.NamespaceHelper;
 
@@ -87,7 +89,7 @@ public class TileEntityFreezer extends TileEntityLockable implements IFeatureBlo
         }
 
         if (!this.world.isRemote) {
-            
+
             ItemStack itemstack = this.itemBox.getStackInSlot(1);
             if (this.isBurning() || !itemstack.isEmpty() && !this.itemBox.getStackInSlot(0).isEmpty()) {
                 IRecipe irecipe = this.getCurrentRecipe();
@@ -144,8 +146,8 @@ public class TileEntityFreezer extends TileEntityLockable implements IFeatureBlo
     }
 
     private int getCookTime() {
-        FurnaceRecipe furnacerecipe = this.getCurrentRecipe();
-        return furnacerecipe != null ? furnacerecipe.getCookingTime() : 200;
+        ISimpleRecipe furnacerecipe = this.getCurrentRecipe();
+        return furnacerecipe != null ? furnacerecipe.getProgressingTime() : 200;
     }
 
     private boolean canSmelt(@Nullable IRecipe recipe) {
@@ -242,8 +244,8 @@ public class TileEntityFreezer extends TileEntityLockable implements IFeatureBlo
         return this.recipeUseCounts;
     }
 
-    public FurnaceRecipe getCurrentRecipe() {
-        return this.world.getRecipeManager().getRecipe(this, this.world, net.minecraftforge.common.crafting.VanillaRecipeTypes.SMELTING);//this.world.getRecipeManager().getRecipe(this, this.world, SSCoreRecipeTypes.FREEZING);
+    public FreezerRecipe getCurrentRecipe() {
+        return this.world.getRecipeManager().getRecipe(this, this.world, SSCoreRecipeTypes.FREEZING);
     }
 
     //Inventory

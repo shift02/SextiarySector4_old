@@ -18,16 +18,17 @@ import net.minecraftforge.common.crafting.RecipeType;
 import shift.sextiarysector4.core.SSCoreRecipeSerializers;
 import shift.sextiarysector4.core.SSCoreRecipeTypes;
 import shift.sextiarysector4.core.SextiarySector4;
+import shift.sextiarysector4.lib.recipe.ISimpleRecipe;
 
 
-public class FreezerRecipe implements IRecipe {
+public class FreezerRecipe implements IRecipe, ISimpleRecipe {
 
     private final ResourceLocation id;
     private final String group;
     private final Ingredient input;
     private final ItemStack output;
     private final float experience;
-    private final int cookingTime;
+    private final int progressingTime;
 
     public FreezerRecipe(ResourceLocation p_i48715_1_, String p_i48715_2_, Ingredient p_i48715_3_, ItemStack p_i48715_4_, float p_i48715_5_, int p_i48715_6_) {
         this.id = p_i48715_1_;
@@ -35,7 +36,7 @@ public class FreezerRecipe implements IRecipe {
         this.input = p_i48715_3_;
         this.output = p_i48715_4_;
         this.experience = p_i48715_5_;
-        this.cookingTime = p_i48715_6_;
+        this.progressingTime = p_i48715_6_;
 
     }
 
@@ -89,8 +90,9 @@ public class FreezerRecipe implements IRecipe {
         return this.group;
     }
 
-    public int getCookingTime() {
-        return this.cookingTime;
+    @Override
+    public int getProgressingTime() {
+        return this.progressingTime;
     }
 
     public ResourceLocation getId() {
@@ -120,7 +122,7 @@ public class FreezerRecipe implements IRecipe {
             if (item != null) {
                 ItemStack itemstack = new ItemStack(item);
                 float lvt_8_1_ = JsonUtils.getFloat(json, "experience", 0.0F);
-                int lvt_9_1_ = JsonUtils.getInt(json, "cookingtime", 200);
+                int lvt_9_1_ = JsonUtils.getInt(json, "processing_time", 200);
                 return new FreezerRecipe(recipeId, s, ingredient, itemstack, lvt_8_1_, lvt_9_1_);
             } else {
                 throw new IllegalStateException(s1 + " did not exist");
@@ -142,7 +144,7 @@ public class FreezerRecipe implements IRecipe {
             recipe.input.writeToBuffer(buffer);
             buffer.writeItemStack(recipe.output);
             buffer.writeFloat(recipe.experience);
-            buffer.writeVarInt(recipe.cookingTime);
+            buffer.writeVarInt(recipe.progressingTime);
         }
 
         @Override

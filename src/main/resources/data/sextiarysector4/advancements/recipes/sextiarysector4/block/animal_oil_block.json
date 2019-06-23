@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "sextiarysector4:crafting_shaped/animal_oil_block"
+    ]
+  },
+  "criteria": {
+    "has_animal_oil": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "sextiarysector4:animal_oil"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "sextiarysector4:crafting_shaped/animal_oil_block"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_animal_oil",
+      "has_the_recipe"
+    ]
+  ]
+}

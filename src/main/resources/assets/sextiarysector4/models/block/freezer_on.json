@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/orientable",
+  "textures": {
+    "top": "block/furnace_top",
+    "front": "sextiarysector4:block/freezer_front_on",
+    "side": "block/furnace_side"
+  }
+}

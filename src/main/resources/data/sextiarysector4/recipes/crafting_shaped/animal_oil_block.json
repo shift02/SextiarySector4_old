@@ -1,0 +1,16 @@
+{
+  "type": "crafting_shaped",
+  "pattern": [
+    "III",
+    "III",
+    "III"
+  ],
+  "key": {
+    "I": {
+      "item": "sextiarysector4:animal_oil"
+    }
+  },
+  "result": {
+    "item": "sextiarysector4:animal_oil_block"
+  }
+}

@@ -1,6 +1,0 @@
-{
-  "parent": "item/generated",
-  "textures": {
-    "layer0": "sextiarysector4:items/bottle_drinking_water"
-  }
-}

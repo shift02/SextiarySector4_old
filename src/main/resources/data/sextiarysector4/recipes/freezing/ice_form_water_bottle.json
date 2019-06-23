@@ -1,0 +1,13 @@
+{
+  "type": "sextiarysector4:freezing",
+  "ingredient": {
+    "type": "forge:nbt",
+    "item": "minecraft:potion",
+    "nbt": {
+      "Potion": "minecraft:water"
+    }
+  },
+  "result": "minecraft:ice",
+  "experience": 0.7,
+  "processing_time": 200
+}

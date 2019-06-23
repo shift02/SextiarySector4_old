@@ -1,6 +1,7 @@
 {
   "type": "sextiarysector4:freezing",
   "ingredient": {
+    "type": "minecraft:item",
     "item": "minecraft:iron_ore"
   },
   "result": "minecraft:iron_ingot",
